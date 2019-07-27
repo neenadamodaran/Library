@@ -1,0 +1,7 @@
+com/neena/library/model/Book.class
+com/neena/library/controller/BooksController.class
+com/neena/library/manager/impl/BookManagerImpl.class
+com/neena/library/controller/HelloController.class
+com/neena/library/dao/impl/BookDAOImpl.class
+com/neena/library/manager/BookManager.class
+com/neena/library/dao/BookDAO.class

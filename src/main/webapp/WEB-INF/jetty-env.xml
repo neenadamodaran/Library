@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+ <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+ 
+
+ 
+ <Configure id='wac' class="org.eclipse.jetty.webapp.WebAppContext">
+  <New id="myds" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg><Ref refid="wac"/></Arg>
+    <Arg>jdbc/librarydb</Arg>
+    <Arg>
+      <New class="org.apache.derby.jdbc.EmbeddedDataSource">
+       	
+      
+        <Set name="DatabaseName">librarydb</Set>
+        <Set name="createDatabase">create</Set>
+
+      </New>
+    </Arg>
+  </New>
+</Configure>
