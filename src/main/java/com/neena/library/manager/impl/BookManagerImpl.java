@@ -3,11 +3,11 @@ package com.neena.library.manager.impl;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.neena.library.dao.BookDAO;
 import com.neena.library.manager.BookManager;
@@ -26,7 +26,9 @@ public class BookManagerImpl implements BookManager {
 		this.bookDAO = bookDAO;
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED)
 	public List<Book> getBooks() {
+		
 		return bookDAO.getBooks(); 
 	}
 }
