@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -63,6 +64,7 @@ public class Address implements Serializable {
     @Column(name = "COUNTRY")
 	private String country;
     
+    @Version
     @Column(name = "VERSION")
 	private int version; 
     

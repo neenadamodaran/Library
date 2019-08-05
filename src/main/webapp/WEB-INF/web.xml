@@ -29,6 +29,10 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     
+	<listener>
+    	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+    
     <resource-ref>
 	    <description>my connection</description>
 	    <res-ref-name>jdbc/librarydb</res-ref-name>

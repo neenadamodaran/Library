@@ -20,6 +20,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -56,7 +57,7 @@ public class Borrower implements Serializable{
 	private Set<BorrowedBook> borrowedBooks = new HashSet<>();
 	
 	
-	
+	@Version
 	@Column(name = "VERSION")
 	private int version; 
 	

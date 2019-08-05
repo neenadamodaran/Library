@@ -18,6 +18,7 @@ import com.neena.library.model.Book;
 public class BookManagerImpl implements BookManager {
 	
 	
+	
 	BookDAO bookDAO; 
 	
 	@Inject
@@ -31,4 +32,33 @@ public class BookManagerImpl implements BookManager {
 		
 		return bookDAO.getBooks(); 
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void addBook(Book book) {
+		// TODO Auto-generated method stub
+		 bookDAO.addBook(book); 
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Book getBookById(Long id) {
+		
+		return bookDAO.getBookById(id); 
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void updateBook(Book book) {
+		// TODO Auto-generated method stub
+		bookDAO.updateBook(book); 
+	}
+
+	@Override
+	public void deleteBookById(Long id) {
+		// TODO Auto-generated method stub
+		bookDAO.deleteBook(id); 	}
+	
+	
+
 }

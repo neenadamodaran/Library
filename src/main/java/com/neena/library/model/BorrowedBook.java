@@ -19,6 +19,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -41,6 +42,7 @@ public class BorrowedBook implements Serializable {
 	@Column(name = "BORROWED_BOOK_ID")
 	private long id;
 
+	@Version
 	@Column(name = "VERSION")
 	private int version;
 

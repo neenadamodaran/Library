@@ -1,42 +1,104 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hello ${name}!</title>
-<link href="${contextPath}/resources/css/main.css" rel="stylesheet">
+<title>Library</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="resources/css/main.css" rel="stylesheet">
+<link href="resources/css/menu.css" rel="stylesheet">
+<link href="resources/css/topImage.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+
+
+</script>
+
 </head>
 <body>
-	<h2 class="hello-title">Hello ${name}!</h2>
-	<c:forEach var="entry" items="${books}">
-		</p>
-		<c:out value="${entry.bookName}" />
-		</p>
+	<jsp:include page="topMenu.jsp" />
 
-		<c:out value="${entry.authorName}" />
-		</p>
-		<c:out value="${entry.bookVersion}" />
-		</p>
-		<c:out value="${entry.bookInventory.quantity}" />
-		</p>
-		<c:forEach var="borrowedDetail" items="${entry.borrowDetails}">
-			<c:out value="${borrowedDetail.borrower.borrowerFirstName}" />
+	<!-- Page content -->
+
+	<div id="react"></div>
+	<div class="content">
+
+
+
+		<div class="addBook">
 			</p>
-			<c:out value="${borrowedDetail.borrower.borrowerLastName}" />
+			<button class="button" onClick="location.href='addBook'"><i class="fa fa-plus" aria-hidden="true" ></i> Add Book</button>
 			</p>
-			<c:out value="${borrowedDetail.borrower.address.addressLine1}" />
-			</p>
-			<c:out value="${borrowedDetail.borrower.address.city}" />
-			</p>
+		</div>
+		<table id ="booksTable" class=table>
+			<tr>
+				<th>Book Name</th>
+				<th>Author Name</th>
+				<th>Book Version</th>
+				<th>Publication Date</th>
+				<th>Availability</th>
+				<th>Borrowed</th>
+				<th>Action</th>
 
-		</c:forEach>
+			</tr>
+			<c:forEach var="entry" items="${books}">
 
-	</c:forEach>
+				<tr>
+					<td><c:out value="${entry.bookName}" /></td>
+					<td><c:out value="${entry.authorName}" /></td>
+					<td><c:out value="${entry.bookVersion}" /></td>
+					<td><c:out value="${entry.publicationDate}" /></td>
+					<td><c:out value="${entry.bookInventory.quantity}" /></td>
+					<td>
+					<c:choose>
+							<c:when test="${fn:length(book.borrowDetails) gt 0}">
+        
+        							Yes 
+       							 <br />
+							</c:when>
+							<c:otherwise>
+        							No 
+        							<c:forEach var="borrowDetail" items="${book.borrowDetails}">
+        								<c:out value="${borrowDetail.book.bookName}" />
+        							</c:forEach>
+       							<br />
+							</c:otherwise>
+						</c:choose>
+						
+						</td>
+						<td>
+						<button class="btn" onClick="location.href='updateBook?id=${entry.id}'"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+</button>
+							<button class="btn" onClick="location.href='processDelete?id=${entry.id}'"><i class="fa fa-trash"></i></button>
+						</td>
+
+				</tr>
+			</c:forEach>
+
+		</table>
+		..
+	</div>
 
 
-	<script src="${contextPath}/resources/js/main.js"></script>
+	<script>
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "topnav") {
+				x.className += " responsive";
+			} else {
+				x.className = "topnav";
+			}
+		}
+	</script>
 </body>
 </html>

@@ -12,7 +12,7 @@
 
 
 	<!-- bean definitions here -->
-	<bean id="bookDAO" class="com.neena.library.dao.impl.BookDAOImpl">
+	<bean id="bookDAO" class="com.neena.library.dao.impl.BookDAOImpl" scope="session">
 	</bean>
 	<bean
 		id="org.springframework.context.annotation.internalPersistenceAnnotationProcessor"

@@ -20,9 +20,11 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "BOOKS")
@@ -39,6 +41,7 @@ public class Book implements java.io.Serializable {
 	@Column(name = "BOOK_ID")
 	private Long id;
 	
+	@Version
 	@Column(name = "VERSION")
 	private int version; 
 
@@ -50,8 +53,10 @@ public class Book implements java.io.Serializable {
 	
 	@Column(name = "BOOK_VERSION", nullable=false)
 	private String bookVersion;
+
 	
 	@Column(name = "PUBLICATION_DATE")
+	@DateTimeFormat(pattern = "YYYY-MM-dd")
 	private Date publicationDate; 
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
@@ -73,7 +78,7 @@ public class Book implements java.io.Serializable {
 	//Shared Primary Key
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "BOOK_INVENTORY_ID", nullable=false)
-	BookInventory bookInventory; 
+	private BookInventory bookInventory; 
 	
 	@PrePersist
     public void prePersist() {

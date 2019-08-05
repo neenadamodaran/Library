@@ -1,5 +1,9 @@
 package com.neena.library.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -7,9 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.neena.library.manager.BookManager;
+import com.neena.library.model.Book;
+
 @Controller
 public class LoginController {
-    @RequestMapping(value ={"/", "/login"}, method=RequestMethod.GET)
+	
+	BookManager bookManager;
+	
+	
+	@Inject
+    public LoginController(BookManager bookManager) {
+		super();
+		this.bookManager = bookManager;
+	}
+
+	@RequestMapping(value ={"/", "/login"}, method=RequestMethod.GET)
     public String login(@RequestParam(value="email", required=false, defaultValue="") String name, @RequestParam(value="password", required=false, defaultValue="") String password, Model model) {
        return "login";
     }
@@ -20,7 +37,11 @@ public class LoginController {
     	   System.out.println("processed   " + email); 
     	   return "login"; 
        }
-       else 
-    	   return "books"; 
+       else {
+    	   List<Book> books = bookManager.getBooks();
+   		model.addAttribute("books", books);
+   		return "books";
+       }
+    	   
     }
 }

@@ -34,9 +34,10 @@ body, html {
 /* Add styles to the form container */
 .container {
   position: absolute;
-  right: 0;
+  top:30%; 
+  left: 40%;
   margin: 20px;
-  max-width: 300px;
+  max-width: 400px;
   padding: 16px;
   background-color: white;
 }
