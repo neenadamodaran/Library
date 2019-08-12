@@ -55,8 +55,9 @@ public class Book implements java.io.Serializable {
 	private String bookVersion;
 
 	
+	
 	@Column(name = "PUBLICATION_DATE")
-	@DateTimeFormat(pattern = "YYYY-MM-dd")
+	
 	private Date publicationDate; 
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
