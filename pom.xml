@@ -22,7 +22,7 @@
 		<hibernate-core-version>5.1.0.Final</hibernate-core-version>
 		<hibernate-entity-manager-version>5.1.0.Final</hibernate-entity-manager-version>
 		<commons-logging-version>1.2</commons-logging-version>
-		<jackson-databind>2.8.7</jackson-databind>
+		<jackson-databind>2.9.10.4</jackson-databind>
 	</properties>
 
 	<dependencies>
